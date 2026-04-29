@@ -33,7 +33,7 @@ const headlineCharVariants: Variants = {
 
 export default function OrangeWorldScene(_props: OrangeWorldSceneProps) {
   return (
-    <div className="orange-scene" aria-label="Glazed product world">
+    <div className="orange-scene" aria-label="Donut product world">
       {/* 1. Base orange background */}
       <div className="orange-scene__bg">
         <Image
@@ -120,7 +120,7 @@ export default function OrangeWorldScene(_props: OrangeWorldSceneProps) {
           <span className="orange-scene__product-shadow" aria-hidden />
           <Image
             src={`${ORANGE_BASE}/product-group.png`}
-            alt="Glazed donut product cluster"
+            alt="Donut donut product cluster"
             width={2200}
             height={1600}
             sizes="(max-width: 768px) 100vw, 60vw"
@@ -131,8 +131,8 @@ export default function OrangeWorldScene(_props: OrangeWorldSceneProps) {
       </div>
 
       {/* 6. Mini logo */}
-      <div className="orange-scene__logo" aria-label="Glazed">
-        GLAZED
+      <div className="orange-scene__logo" aria-label="Donut">
+        Donut
       </div>
 
       {/* 7. Order pill button */}

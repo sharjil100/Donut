@@ -92,7 +92,7 @@ export default function PortalTransition() {
           <div className="hero__logo">
             <Image
               src={`${HERO_BASE}/logo-white.png`}
-              alt="Glazed"
+              alt="Donut"
               width={1200}
               height={400}
               priority
@@ -184,7 +184,7 @@ export default function PortalTransition() {
           >
             <Image
               src={`${HERO_BASE}/logo-white.png`}
-              alt="Glazed"
+              alt="Donut"
               width={1200}
               height={400}
               priority

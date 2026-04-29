@@ -50,7 +50,7 @@ export default function PortalHero() {
       >
         <Image
           src={`${HERO_BASE}/logo-white.png`}
-          alt="Glazed"
+          alt="Donut"
           width={1200}
           height={400}
           priority
