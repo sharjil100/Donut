@@ -62,8 +62,12 @@ img {
   */
   top: 12%;
   transform: translateX(-50%);
-  width: clamp(1000px, 52vw, 700px);
-  z-index: 1;
+  width: clamp(360px, 70vw, 1000px);
+  /* Above the reflection (2) and shadow (3) so the letters stay
+     solid where they overlap the bright reflection band on mobile,
+     but still below the donut (4) so the donut's lower curve
+     overlaps the top of the logo. */
+  z-index: 3;
   pointer-events: none;
 }
 .hero__logo-img {
@@ -89,7 +93,7 @@ img {
     transparent 80%
   );
   filter: blur(24px);
-  z-index: 3;
+  z-index: 2;
   pointer-events: none;
 }
 
@@ -103,7 +107,7 @@ img {
   width: clamp(520px, 46vw, 660px);
   opacity: 0.28;
   filter: blur(3px);
-  z-index: 2;
+  z-index: 1;
   pointer-events: none;
   -webkit-mask-image: linear-gradient(
     to bottom,
@@ -145,29 +149,57 @@ img {
 /* ===== Mobile ===== */
 @media (max-width: 768px) {
   .hero {
-    min-height: 680px;
+    min-height: 100svh;
   }
 
   .hero__donut {
-    width: 90vw;
-    top: 48%;
+    width: 86vw;
+    top: 44%;
   }
 
   .hero__logo {
-    width: clamp(280px, 86vw, 420px);
-    top: 58%;
+    left: 50%;
+    width: 96vw;
+    /* Position so the logo's top edge tucks just under the donut's
+       lower curve — donut center is at 44vh, half-height ≈ 43vw. */
+    top: calc(44vh + 34vw);
   }
 
   .hero__shadow {
-    width: 80vw;
-    height: 100px;
-    top: calc(48% + 200px);
+    width: 76vw;
+    height: 90px;
+    top: calc(44% + 32vw);
   }
 
   .hero__reflection-wrap {
-    width: 86vw;
-    top: calc(48% + 190px);
+    width: 82vw;
+    top: calc(44% + 30vw);
     opacity: 0.22;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: 100svh;
+  }
+  .hero__donut {
+    width: 92vw;
+    top: 42%;
+  }
+  .hero__logo {
+    width: 100vw;
+    top: calc(42vh + 34vw);
+  }
+  .hero__shadow {
+    width: 78vw;
+    height: 70px;
+    top: calc(42% + 36vw);
+    filter: blur(18px);
+  }
+  .hero__reflection-wrap {
+    width: 86vw;
+    top: calc(42% + 34vw);
+    opacity: 0.18;
   }
 }
 
@@ -374,7 +406,7 @@ img {
   left: 50%;
   bottom: 8vh;
   transform: translateX(-50%);
-  width: clamp(950px, 62vw, 1450px);
+  width: clamp(360px, 70vw, 1450px);
   z-index: 4;
   pointer-events: none;
 }
@@ -467,7 +499,7 @@ img {
     width: 96vw;
   }
   .orange-scene__headline {
-    top: 39%;
+    top: 38%;
     max-width: 96vw;
   }
   .orange-scene__headline-line {
@@ -484,20 +516,53 @@ img {
     bottom: 10vh;
   }
   .orange-scene__decor {
-    width: min(24vw, 96px);
-    opacity: 0.7;
+    width: min(20vw, 90px);
+    opacity: 0.65;
   }
   .orange-scene__logo {
-    top: 4.5vh;
-    font-size: clamp(22px, 6vw, 28px);
+    top: 3.5vh;
+    font-size: clamp(20px, 5.4vw, 28px);
   }
   .orange-scene__order {
-    top: 4.5vh;
-    right: 5vw;
-    height: 42px;
-    padding: 0 16px;
-    font-size: 13.5px;
+    top: 3.5vh;
+    right: 4.5vw;
+    height: 40px;
+    padding: 0 14px;
+    font-size: 13px;
     letter-spacing: 0.12em;
+  }
+}
+
+@media (max-width: 480px) {
+  .orange-scene__arch {
+    top: 38%;
+    width: 100vw;
+  }
+  .orange-scene__headline {
+    top: 36%;
+  }
+  .orange-scene__headline-line {
+    font-size: clamp(36px, 13vw, 60px);
+  }
+  .orange-scene__product {
+    width: 130vw;
+    bottom: 8vh;
+  }
+  .orange-scene__decor {
+    width: 56px;
+    opacity: 0.55;
+  }
+  .orange-scene__logo {
+    top: 18px;
+    font-size: 18px;
+  }
+  .orange-scene__order {
+    top: 14px;
+    right: 14px;
+    height: 36px;
+    padding: 0 12px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
   }
 }
 
@@ -605,14 +670,15 @@ img {
   transform-origin: center center;
 }
 
-/* Pink pedestal — flat saucer/table behind the cup base */
+/* Pink pedestal — small flat saucer under the cup base. Sized so it
+   peeks slightly wider than the cup foot rather than wrapping the body. */
 .cs__pedestal {
   position: absolute;
   left: 50%;
-  bottom: 14vh;
+  bottom: 11vh;
   transform: translateX(-50%);
-  width: clamp(280px, 22vw, 380px);
-  height: clamp(34px, 3.2vw, 56px);
+  width: clamp(150px, 13vw, 240px);
+  height: clamp(16px, 1.4vw, 24px);
   background: radial-gradient(
     ellipse at center,
     #e91e7a 0%,
@@ -749,6 +815,7 @@ img {
 @media (max-width: 768px) {
   .cs {
     padding: 80px 0 56px;
+    min-height: 100svh;
   }
   .cs__strip {
     height: 52px;
@@ -759,26 +826,28 @@ img {
     padding: 0 10px;
   }
   .cs__headline {
-    top: 18%;
+    top: 16%;
   }
   .cs__headline-eyebrow {
-    font-size: clamp(14px, 4vw, 22px);
+    font-size: clamp(13px, 3.6vw, 22px);
     letter-spacing: 0.08em;
   }
   .cs__headline-main {
-    font-size: clamp(72px, 18vw, 130px);
+    font-size: clamp(56px, 16vw, 130px);
     text-shadow:
       3px 4px 0 rgba(255, 196, 142, 0.95),
       0 6px 18px rgba(180, 70, 0, 0.08);
   }
   .cs__slot--left,
   .cs__slot--right {
-    top: 50%;
+    top: 52%;
   }
-  .cs__slot--left  { left: -28vw; }
-  .cs__slot--right { right: -28vw; }
+  /* Side donuts peek in from the edges instead of sitting almost fully
+     off-screen; tuned so ~40-50% of the side image stays visible. */
+  .cs__slot--left  { left: -18vw; }
+  .cs__slot--right { right: -18vw; }
   .cs__slot--center {
-    top: 58%;
+    top: 60%;
   }
   .cs__arrow {
     width: 48px;
@@ -788,12 +857,12 @@ img {
       0 4px 0 rgba(244, 160, 53, 0.35),
       0 8px 16px rgba(244, 160, 53, 0.18);
   }
-  .cs__arrow--left  { left: 4vw; top: 64%; }
-  .cs__arrow--right { right: 4vw; top: 64%; }
+  .cs__arrow--left  { left: 4vw; top: 65%; }
+  .cs__arrow--right { right: 4vw; top: 65%; }
   .cs__pedestal {
-    width: 70vw;
-    height: 56px;
-    bottom: 8vh;
+    width: 60vw;
+    height: 36px;
+    bottom: 12vh;
   }
   .cs__doodle {
     opacity: 0.07;
@@ -802,6 +871,61 @@ img {
     right: 4vw;
     bottom: 18px;
     font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cs {
+    padding: 64px 0 48px;
+  }
+  .cs__strip {
+    height: 44px;
+  }
+  .cs__strip-track {
+    gap: 12px;
+    padding: 0 8px;
+  }
+  .cs__headline {
+    top: 14%;
+  }
+  .cs__headline-eyebrow {
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+  .cs__headline-main {
+    font-size: clamp(48px, 15vw, 86px);
+  }
+  /* Tiny phones — keep the side donuts peeking but smaller so they
+     frame the centered product without crowding it. */
+  .cs__slot--left,
+  .cs__slot--right {
+    top: 54%;
+  }
+  .cs__slot--left  { left: -22vw; }
+  .cs__slot--right { right: -22vw; }
+  .cs__slot--center {
+    top: 60%;
+  }
+  .cs__arrow {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+  }
+  .cs__arrow--left  { left: 12px; top: 62%; }
+  .cs__arrow--right { right: 12px; top: 62%; }
+  .cs__pedestal {
+    width: 64vw;
+    height: 28px;
+    bottom: 14vh;
+  }
+  .cs__support {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    bottom: 12px;
+    font-size: 10.5px;
+    text-align: center;
+    width: 90vw;
   }
 }
 
@@ -999,38 +1123,98 @@ img {
 
 @media (max-width: 900px) {
   .dp {
-    height: 200vh;
+    height: auto;
+    min-height: 100svh;
   }
-  .dp__package {
-    left: 50%;
-    top: 58%;
-    width: clamp(280px, 70vw, 460px);
-  }
-  .dp__donut {
-    left: 50%;
-    top: 14vh;
-    width: clamp(180px, 50vw, 300px);
+  .dp__stage {
+    position: relative;
+    height: auto;
+    min-height: 100svh;
+    padding: 32px 0 48px;
   }
   .dp__copy {
-    position: absolute;
+    position: relative;
     right: auto;
-    left: 50%;
-    top: 6vh;
-    transform: translateX(-50%);
+    left: 0;
+    top: 0;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 24px;
     text-align: center;
-    width: 90vw;
-    max-width: 90vw;
   }
   .dp__heading {
-    font-size: clamp(46px, 12vw, 84px);
-    margin-bottom: 18px;
+    font-size: clamp(46px, 11vw, 84px);
+    margin-bottom: 20px;
   }
   .dp__steps {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: stretch;
+    max-width: 420px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .dp__step {
+    gap: 14px;
+  }
+  .dp__step-n {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
+  .dp__step-title {
+    font-size: 14px;
+  }
+  .dp__step-body {
+    font-size: 13px;
+    max-width: none;
+  }
+  .dp__package {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    margin: 28px auto 0;
+    width: clamp(260px, 72vw, 460px);
   }
   .dp__bottom-letters {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    transform: none;
+    margin: 16px auto 0;
     width: clamp(280px, 80vw, 520px);
-    bottom: -2vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .dp__stage {
+    padding: 24px 0 36px;
+  }
+  .dp__copy {
+    padding: 0 18px;
+  }
+  .dp__heading {
+    font-size: clamp(40px, 12vw, 64px);
+    text-shadow:
+      3px 4px 0 rgba(193, 16, 97, 0.85),
+      0 8px 18px rgba(120, 0, 50, 0.18);
+  }
+  .dp__steps {
+    gap: 12px;
+  }
+  .dp__step-n {
+    width: 34px;
+    height: 34px;
+    font-size: 15px;
+  }
+  .dp__package {
+    width: clamp(220px, 80vw, 360px);
+    margin-top: 20px;
+  }
+  .dp__bottom-letters {
+    width: 92vw;
   }
 }
 

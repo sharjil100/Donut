@@ -14,18 +14,20 @@ import { useScene } from './SceneContext';
 // Per-product slot widths — equalize visual size when each product is centered.
 // Coffee is tall+narrow; donuts are square. Donuts get a wider center width so
 // their visual height matches the coffee cup.
+// Min values are intentionally low so the carousel scales gracefully on
+// narrow phones; vw drives the desktop sizing.
 const PRODUCT_SLOT_WIDTHS: Record<string, { center: string; side: string }> = {
   coffee: {
-    center: 'clamp(280px, 22vw, 430px)',
-    side: 'clamp(260px, 22vw, 360px)',
+    center: 'clamp(150px, 22vw, 430px)',
+    side: 'clamp(130px, 22vw, 360px)',
   },
   'donut-left': {
-    center: 'clamp(340px, 30vw, 520px)',
-    side: 'clamp(420px, 34vw, 620px)',
+    center: 'clamp(190px, 30vw, 520px)',
+    side: 'clamp(220px, 34vw, 620px)',
   },
   'donut-right': {
-    center: 'clamp(340px, 30vw, 520px)',
-    side: 'clamp(420px, 34vw, 620px)',
+    center: 'clamp(190px, 30vw, 520px)',
+    side: 'clamp(220px, 34vw, 620px)',
   },
 };
 

@@ -137,7 +137,8 @@ export default function PortalTransition() {
       aria-label="Donut portal scroll experience"
     >
       <div className="hero">
-        {/* 1. Pink background */}
+        {/* 1. Pink background — scroll-driven only; visible from frame 1
+            so the sky is never blank during the donut entrance. */}
         <motion.div
           className="hero__bg"
           style={{ scale: bgScale, filter: bgFilter, opacity: bgOpacity }}
@@ -160,38 +161,68 @@ export default function PortalTransition() {
           aria-hidden
         />
 
-        {/* 2. Logo — preserves translateX(-50%) via framer x */}
+        {/* 2. Logo — outer holds scroll-driven props, inner handles entrance:
+            scales up + rises from below with an elastic settle, after the
+            donut has landed. */}
         <motion.div
           className="hero__logo"
           style={{ x: '-50%', y: logoY, opacity: logoOpacity }}
         >
-          <Image
-            src={`${HERO_BASE}/logo-white.png`}
-            alt="Glazed"
-            width={1200}
-            height={400}
-            priority
-            sizes="(max-width: 768px) 88vw, 55vw"
-            className="hero__logo-img"
-          />
+          <motion.div
+            initial={{ opacity: 0, y: 70, scale: 0.7 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{
+              opacity: { duration: 0.7, delay: 1.15, ease: [0.22, 1, 0.36, 1] },
+              y: { type: 'spring', stiffness: 90, damping: 14, delay: 1.15 },
+              scale: {
+                type: 'spring',
+                stiffness: 120,
+                damping: 11,
+                delay: 1.15,
+              },
+            }}
+          >
+            <Image
+              src={`${HERO_BASE}/logo-white.png`}
+              alt="Glazed"
+              width={1200}
+              height={400}
+              priority
+              sizes="(max-width: 768px) 96vw, 70vw"
+              className="hero__logo-img"
+            />
+          </motion.div>
         </motion.div>
 
-        {/* 3. Ground shadow */}
+        {/* 3. Ground shadow — visible from the start; the gradient+blur
+            live on this element directly so we don't wrap it. */}
         <motion.div className="hero__shadow" style={{ opacity: groundOpacity }} />
 
-        {/* 4. Manual reflection */}
+        {/* 4. Manual reflection — outer keeps scroll-driven opacity; inner
+            fades in only after the donut has fully landed (donut entrance
+            ends ~1.15s, so reflection waits until 1.5s). */}
         <motion.div
           className="hero__reflection-wrap"
           style={{ opacity: groundOpacity }}
         >
-          <Image
-            src={`${HERO_BASE}/donut-portal.png`}
-            alt=""
-            width={2400}
-            height={2400}
-            sizes="(max-width: 768px) 78vw, 46vw"
-            className="hero__reflection-img"
-          />
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{
+              duration: 0.9,
+              delay: 1.5,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
+            <Image
+              src={`${HERO_BASE}/donut-portal.png`}
+              alt=""
+              width={2400}
+              height={2400}
+              sizes="(max-width: 768px) 78vw, 46vw"
+              className="hero__reflection-img"
+            />
+          </motion.div>
         </motion.div>
 
         {/* Portal inner light — sits inside donut hole, behind donut */}
@@ -210,7 +241,9 @@ export default function PortalTransition() {
           />
         </motion.div>
 
-        {/* 5. Donut — same -50%/-50% centering as PortalHero, plus scroll-driven scale */}
+        {/* 5. Donut — outer keeps -50%/-50% centering + scroll-driven scale.
+            Inner div drops in from above with a half-spin and a bouncy
+            settle, then runs a gentle idle float. */}
         <motion.div
           className="hero__donut"
           style={{
@@ -220,15 +253,39 @@ export default function PortalTransition() {
             opacity: donutOpacity,
           }}
         >
-          <Image
-            src={`${HERO_BASE}/donut-portal.png`}
-            alt="Frosted pink donut portal"
-            width={2400}
-            height={2400}
-            priority
-            sizes="(max-width: 768px) 90vw, 55vw"
-            className="hero__donut-img"
-          />
+          <motion.div
+            initial={{ y: '-110vh', rotate: -200, scale: 0.55, opacity: 0 }}
+            animate={{ y: 0, rotate: 0, scale: 1, opacity: 1 }}
+            transition={{
+              y: { duration: 1.15, ease: [0.34, 1.56, 0.64, 1] },
+              rotate: { duration: 1.15, ease: [0.22, 1, 0.36, 1] },
+              scale: {
+                duration: 1.15,
+                ease: [0.34, 1.56, 0.64, 1],
+              },
+              opacity: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+            }}
+          >
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{
+                duration: 4.4,
+                delay: 1.4,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            >
+              <Image
+                src={`${HERO_BASE}/donut-portal.png`}
+                alt="Frosted pink donut portal"
+                width={2400}
+                height={2400}
+                priority
+                sizes="(max-width: 768px) 90vw, 55vw"
+                className="hero__donut-img"
+              />
+            </motion.div>
+          </motion.div>
         </motion.div>
 
         {/* Dark tunnel vignette */}
