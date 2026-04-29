@@ -48,15 +48,7 @@ export default function PortalHero() {
               }
         }
       >
-        <Image
-          src={`${HERO_BASE}/logo-white.png`}
-          alt="Donut"
-          width={1200}
-          height={400}
-          priority
-          sizes="(max-width: 768px) 96vw, 70vw"
-          className="hero__logo-img"
-        />
+        <span className="hero__logo-text">DONUT</span>
       </motion.div>
 
       {/* 3. Ground shadow — fades in as the donut nears its rest position */}

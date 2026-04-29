@@ -1,6 +1,14 @@
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
+import { Fredoka } from 'next/font/google';
 import './globals.css';
+
+const fredoka = Fredoka({
+  subsets: ['latin'],
+  weight: ['600', '700'],
+  variable: '--font-display',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Donut Portal — Brewed for the Bold',
@@ -16,7 +24,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={fredoka.variable}>
       <body>{children}</body>
     </html>
   );

@@ -90,15 +90,7 @@ export default function PortalTransition() {
             />
           </div>
           <div className="hero__logo">
-            <Image
-              src={`${HERO_BASE}/logo-white.png`}
-              alt="Donut"
-              width={1200}
-              height={400}
-              priority
-              sizes="(max-width: 768px) 88vw, 55vw"
-              className="hero__logo-img"
-            />
+            <span className="hero__logo-text">DONUT</span>
           </div>
           <div className="hero__shadow" />
           <div className="hero__reflection-wrap">
@@ -182,15 +174,7 @@ export default function PortalTransition() {
               },
             }}
           >
-            <Image
-              src={`${HERO_BASE}/logo-white.png`}
-              alt="Donut"
-              width={1200}
-              height={400}
-              priority
-              sizes="(max-width: 768px) 96vw, 70vw"
-              className="hero__logo-img"
-            />
+            <span className="hero__logo-text">DONUT</span>
           </motion.div>
         </motion.div>
 

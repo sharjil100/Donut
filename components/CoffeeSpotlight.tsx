@@ -5,6 +5,7 @@ import { useMemo, useCallback, useState, useRef } from 'react';
 import {
   motion,
   AnimatePresence,
+  useInView,
   useReducedMotion,
   type Variants,
 } from 'framer-motion';
@@ -176,12 +177,17 @@ const SLOT_ROTATE: Record<SlotName, number> = { left: -8, center: 0, right: 8 };
 export default function CoffeeSpotlight() {
   const { activeIndex, setActiveIndex, flying, startFlight } = useScene();
   const centerImgRef = useRef<HTMLImageElement>(null);
-  // direction = 0 → first mount (use spin entrance);
+  const sectionRef = useRef<HTMLElement>(null);
+  // Trigger the spin/tilt entrance only when the section actually scrolls
+  // into view, not on initial page mount (the user is in the hero then,
+  // and would miss the animation entirely).
+  const inView = useInView(sectionRef, { once: true, amount: 0.3 });
+  // direction = 0 → first reveal (use spin entrance);
   // direction = -1 → LEFT pressed, items shift leftward;
   // direction = +1 → RIGHT pressed, items shift rightward.
   const [direction, setDirection] = useState(0);
   const reduceMotion = useReducedMotion();
-  const donuts = useMemo(() => generateDonutStrip(22), []);
+  const donuts = useMemo(() => generateDonutStrip(60), []);
 
   // Arrow direction per user spec:
   //   LEFT  → right donut → center, center bottle → left.
@@ -206,7 +212,7 @@ export default function CoffeeSpotlight() {
   ];
 
   return (
-    <section className="cs" aria-label="Really good coffee spotlight">
+    <section ref={sectionRef} className="cs" aria-label="Really good coffee spotlight">
       {/* Subtle paper grain */}
       <div className="cs__grain" aria-hidden />
 
@@ -235,7 +241,7 @@ export default function CoffeeSpotlight() {
           transition={
             reduceMotion
               ? undefined
-              : { duration: 36, repeat: Infinity, ease: 'linear' }
+              : { duration: 14, repeat: Infinity, ease: 'linear' }
           }
         >
           {[...donuts, ...donuts].map((d, i) => (
@@ -355,7 +361,9 @@ export default function CoffeeSpotlight() {
                   }
                   animate={
                     direction === 0
-                      ? { rotate: slotRotate, opacity: 1, x: '0%' }
+                      ? inView || reduceMotion
+                        ? { rotate: slotRotate, opacity: 1, x: '0%' }
+                        : spinInitial
                       : 'center'
                   }
                   exit={reduceMotion ? undefined : 'exit'}
