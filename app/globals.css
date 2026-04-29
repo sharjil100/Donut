@@ -79,15 +79,16 @@ img {
   display: block;
   width: 100%;
   text-align: center;
-  /* Fredoka — heavy rounded display face that matches the chunky,
-     friendly silhouette of the original GLAZED wordmark. */
+  /* Baloo 2 — very rounded, friendly display face with soft terminals
+     that read like a donut wordmark. Wider tracking lets each letter
+     breathe so the wordmark feels confident, not cramped. */
   font-family: var(--font-display), ui-rounded, "SF Pro Rounded",
     "Nunito", "Quicksand", system-ui, sans-serif;
-  font-weight: 700;
+  font-weight: 800;
   font-style: italic;
   font-size: clamp(80px, 18vw, 280px);
-  line-height: 0.95;
-  letter-spacing: -0.02em;
+  line-height: 1;
+  letter-spacing: 0.06em;
   color: #ffffff;
   text-transform: uppercase;
   text-shadow:

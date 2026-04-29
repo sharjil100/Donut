@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
-import { Fredoka } from 'next/font/google';
+import { Baloo_2 } from 'next/font/google';
 import './globals.css';
 
-const fredoka = Fredoka({
+const displayFont = Baloo_2({
   subsets: ['latin'],
-  weight: ['600', '700'],
+  weight: ['600', '700', '800'],
   variable: '--font-display',
   display: 'swap',
 });
@@ -24,7 +24,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={fredoka.variable}>
+    <html lang="en" className={displayFont.variable}>
       <body>{children}</body>
     </html>
   );
