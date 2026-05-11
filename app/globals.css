@@ -107,6 +107,24 @@ img {
   background: #ffffff;
   color: #da1884;
 }
+/* Hamburger — desktop hides it, mobile shows it in place of links + cta */
+.hero__nav-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 22px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.hero__nav-burger span {
+  display: block;
+  height: 3px;
+  background: #ffffff;
+  border-radius: 2px;
+}
 
 /* ── 3. Left content column ─────────────────────────── */
 .hero__copy {
@@ -236,6 +254,11 @@ img {
 .hero__feature-icon {
   font-size: clamp(22px, 1.8vw, 28px);
   color: #ec4899;
+}
+/* Mobile feature pill is hidden by default; the @media rule below
+   reveals it as a full-width glass card at the bottom of the hero. */
+.hero__features--mobile {
+  display: none;
 }
 
 /* ── 4. Right-side circular badge — tucks against the donut's
@@ -384,96 +407,164 @@ img {
 /* ===== Mobile ===== */
 @media (max-width: 900px) {
   .hero {
-    min-height: 100svh;
+    /* Taller than viewport so the editorial stack (copy → donut →
+       feature pill → scroll cue) all has room to breathe. */
+    min-height: 140svh;
+    height: auto;
   }
-  /* Hide nav links + cta + side badge + features + scroll cue
-     on tablet/phone to focus on the hero core. */
+  /* Nav: brand on left, hamburger on right */
+  .hero__nav {
+    padding: 20px 22px;
+    justify-content: space-between;
+  }
   .hero__nav-links,
-  .hero__nav-cta,
-  .hero__features,
-  .hero__badge,
-  .hero__scroll {
+  .hero__nav-cta {
     display: none;
   }
-  .hero__nav {
-    padding: 18px 20px;
-    justify-content: center;
+  .hero__nav-burger {
+    display: flex;
   }
+
+  /* Content column — left-aligned, anchored top */
   .hero__copy {
     position: absolute;
-    left: 4vw;
-    right: 4vw;
-    top: clamp(80px, 14vh, 130px);
+    left: 22px;
+    right: 22px;
+    top: clamp(90px, 12vh, 130px);
     width: auto;
     max-width: none;
-    text-align: center;
-    align-items: center;
+    text-align: left;
+    align-items: flex-start;
   }
   .hero__tagline {
-    justify-content: center;
+    justify-content: flex-start;
     font-size: clamp(20px, 5vw, 28px);
   }
   .hero__logo-text {
-    font-size: clamp(72px, 19vw, 140px);
-    letter-spacing: 0.03em;
+    font-size: clamp(74px, 19vw, 140px);
+    letter-spacing: 0.02em;
+    line-height: 0.96;
   }
   .hero__sub {
-    font-size: clamp(13px, 3.6vw, 18px);
+    font-size: clamp(15px, 4vw, 20px);
+    margin: 16px 0 12px;
   }
   .hero__body {
-    margin-left: auto;
-    margin-right: auto;
-    font-size: clamp(13px, 3.4vw, 15px);
+    font-size: clamp(14px, 3.6vw, 16px);
+    max-width: 32ch;
   }
   .hero__cta {
-    align-self: center;
-    padding: 14px 26px;
-    font-size: 12px;
+    align-self: flex-start;
+    padding: 16px 28px;
+    font-size: 13px;
+  }
+  /* Features hidden inside the copy column; rendered as a separate
+     full-width glass pill at the bottom of the hero. */
+  .hero__features {
+    display: none;
   }
 
+  /* Donut and friends — centered, mid-lower hero */
   .hero__donut {
     left: 50%;
-    top: 70%;
-    width: 78vw;
+    top: 64%;
+    width: 86vw;
   }
   .hero__shadow {
     left: 50%;
-    top: calc(70% + 28vw);
-    width: 70vw;
+    top: calc(64% + 36vw);
+    width: 76vw;
     height: 80px;
   }
   .hero__reflection-wrap {
     left: 50%;
-    top: calc(70% + 26vw);
-    width: 76vw;
+    top: calc(64% + 34vw);
+    width: 82vw;
     opacity: 0.2;
+  }
+
+  /* Badge — tucked against donut's upper-right shoulder */
+  .hero__badge {
+    left: 78%;
+    top: 52%;
+    width: clamp(96px, 26vw, 130px);
+    height: clamp(96px, 26vw, 130px);
+    padding: 10px;
+  }
+  .hero__badge-icon {
+    font-size: 13px;
+  }
+  .hero__badge-line {
+    font-size: 9.5px;
+  }
+  .hero__badge-emph {
+    font-size: 13px;
+  }
+
+  /* Scroll cue stays visible at the very bottom */
+  .hero__scroll {
+    bottom: 24px;
+  }
+}
+
+/* Feature pill — separate sibling that only renders on mobile as a
+   full-width glass card just above the scroll cue. Uses the same
+   markup (.hero__features) but styled differently inside this MQ. */
+@media (max-width: 900px) {
+  .hero__features--mobile {
+    display: flex;
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: 72px;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 22px;
+    padding: 18px 14px;
+    gap: 0;
+    justify-content: space-around;
+    box-shadow: 0 10px 30px rgba(193, 16, 97, 0.12);
+  }
+  .hero__features--mobile li {
+    flex: 1;
+    font-size: 11px;
+    line-height: 1.35;
+  }
+  .hero__features--mobile .hero__feature-icon {
+    font-size: 22px;
+    margin-bottom: 4px;
   }
 }
 
 @media (max-width: 480px) {
   .hero__copy {
-    top: 14%;
+    top: clamp(80px, 11vh, 110px);
   }
   .hero__tagline-mark {
     width: 18px;
   }
   .hero__logo-text {
-    font-size: clamp(64px, 20vw, 108px);
-    letter-spacing: 0.04em;
+    font-size: clamp(64px, 20vw, 110px);
+    letter-spacing: 0.03em;
   }
   .hero__donut {
-    top: 72%;
+    top: 64%;
     width: 92vw;
   }
   .hero__shadow {
-    top: calc(72% + 34vw);
-    width: 80vw;
+    top: calc(64% + 40vw);
+    width: 82vw;
     filter: blur(18px);
   }
   .hero__reflection-wrap {
-    top: calc(72% + 32vw);
+    top: calc(64% + 38vw);
     width: 88vw;
     opacity: 0.16;
+  }
+  .hero__badge {
+    left: 76%;
+    top: 50%;
   }
 }
 

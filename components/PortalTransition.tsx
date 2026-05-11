@@ -101,6 +101,11 @@ export default function PortalTransition() {
               <span aria-hidden>🛍</span>
               ORDER NOW
             </a>
+            <button type="button" className="hero__nav-burger" aria-label="Open menu">
+              <span aria-hidden />
+              <span aria-hidden />
+              <span aria-hidden />
+            </button>
           </header>
           <div className="hero__copy">
             <p className="hero__tagline">
@@ -199,6 +204,15 @@ export default function PortalTransition() {
             <span aria-hidden>🛍</span>
             ORDER NOW
           </a>
+          <button
+            type="button"
+            className="hero__nav-burger"
+            aria-label="Open menu"
+          >
+            <span aria-hidden />
+            <span aria-hidden />
+            <span aria-hidden />
+          </button>
         </motion.header>
 
         {/* Left content column — scroll-driven fade + stagger entrance */}
@@ -281,6 +295,29 @@ export default function PortalTransition() {
             </li>
           </motion.ul>
         </motion.div>
+
+        {/* Mobile-only feature pill — sibling of copy column so it can
+            span the full hero width as a glass card at the bottom. */}
+        <motion.ul
+          className="hero__features hero__features--mobile"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, delay: 1.85, ease: [0.22, 1, 0.36, 1] }}
+          aria-hidden
+        >
+          <li>
+            <span className="hero__feature-icon" aria-hidden>🌿</span>
+            PREMIUM<br />INGREDIENTS
+          </li>
+          <li>
+            <span className="hero__feature-icon" aria-hidden>♥</span>
+            MADE<br />WITH LOVE
+          </li>
+          <li>
+            <span className="hero__feature-icon" aria-hidden>◯</span>
+            FRESH DAILY<br />HANDCRAFTED
+          </li>
+        </motion.ul>
 
         {/* Right-side circular badge */}
         <motion.div
