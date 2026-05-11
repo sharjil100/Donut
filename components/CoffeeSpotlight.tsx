@@ -342,7 +342,7 @@ export default function CoffeeSpotlight() {
               }
             >
               <AnimatePresence
-                mode="popLayout"
+                mode="wait"
                 custom={direction}
                 initial={true}
               >
@@ -375,7 +375,7 @@ export default function CoffeeSpotlight() {
                       ? isCoffee
                         ? { type: 'spring', stiffness: 90, damping: 9, mass: 1, delay: 0.5 }
                         : { duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.4 }
-                      : { duration: 0.55, ease: [0.22, 1, 0.36, 1] }
+                      : { duration: 0.32, ease: [0.22, 1, 0.36, 1] }
                   }
                 >
                   <Image

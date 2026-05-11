@@ -34,7 +34,7 @@ export const PRODUCTS: Product[] = [
     id: 'donut-right',
     src: `${COFFEE_BASE}/donut-side-right.png`,
     alt: 'Caramel drizzle donut',
-    eyebrow: 'CRUNCHY Donut',
+    eyebrow: 'CRUNCHY TREAT',
     main: 'TREATS',
     width: 1400,
     height: 1400,

@@ -11,7 +11,7 @@ export default function PortalHero() {
   const ease = [0.22, 1, 0.36, 1] as const;
 
   return (
-    <section className="hero" aria-label="Donut portal hero">
+    <section className="hero" aria-label="Crèmeau portal hero">
 
       {/* 1. Pink background — slow zoom-out */}
       <motion.div
@@ -48,7 +48,7 @@ export default function PortalHero() {
               }
         }
       >
-        <span className="hero__logo-text">DONUT</span>
+        <span className="hero__logo-text">Crèmeau</span>
       </motion.div>
 
       {/* 3. Ground shadow — fades in as the donut nears its rest position */}

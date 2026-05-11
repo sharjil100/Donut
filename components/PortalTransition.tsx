@@ -89,8 +89,36 @@ export default function PortalTransition() {
               className="hero__bg-img"
             />
           </div>
-          <div className="hero__logo">
-            <span className="hero__logo-text">DONUT</span>
+          <header className="hero__nav">
+            <span className="hero__nav-brand">CRÈMEAU</span>
+            <nav className="hero__nav-links">
+              <a href="#menu">MENU</a>
+              <a href="#about">ABOUT</a>
+              <a href="#locations">LOCATIONS</a>
+              <a href="#order">ORDER ONLINE</a>
+            </nav>
+            <a className="hero__nav-cta" href="#order">
+              <span aria-hidden>🛍</span>
+              ORDER NOW
+            </a>
+          </header>
+          <div className="hero__copy">
+            <p className="hero__tagline">
+              <span className="hero__tagline-mark" aria-hidden>~</span>
+              Made to make you smile
+              <span className="hero__tagline-mark" aria-hidden>~</span>
+            </p>
+            <h1 className="hero__logo">
+              <span className="hero__logo-text">Crèmeau</span>
+            </h1>
+            <p className="hero__sub">DOUGHNUTS. DREAMS. DELICIOUS.</p>
+            <p className="hero__body">
+              Handcrafted doughnuts made with premium ingredients and a
+              whole lot of love.
+            </p>
+            <a className="hero__cta" href="#menu">
+              EXPLORE OUR MENU <span aria-hidden>→</span>
+            </a>
           </div>
           <div className="hero__shadow" />
           <div className="hero__reflection-wrap">
@@ -126,7 +154,7 @@ export default function PortalTransition() {
     <section
       ref={sectionRef}
       className="portal-section"
-      aria-label="Donut portal scroll experience"
+      aria-label="Crèmeau portal scroll experience"
     >
       <div className="hero">
         {/* 1. Pink background — scroll-driven only; visible from frame 1
@@ -153,29 +181,143 @@ export default function PortalTransition() {
           aria-hidden
         />
 
-        {/* 2. Logo — outer holds scroll-driven props, inner handles entrance:
-            scales up + rises from below with an elastic settle, after the
-            donut has landed. */}
-        <motion.div
-          className="hero__logo"
-          style={{ x: '-50%', y: logoY, opacity: logoOpacity }}
+        {/* Top navigation bar */}
+        <motion.header
+          className="hero__nav"
+          initial={{ opacity: 0, y: -18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
         >
-          <motion.div
-            initial={{ opacity: 0, y: 70, scale: 0.7 }}
+          <span className="hero__nav-brand">CRÈMEAU</span>
+          <nav className="hero__nav-links" aria-label="Primary">
+            <a href="#menu">MENU</a>
+            <a href="#about">ABOUT</a>
+            <a href="#locations">LOCATIONS</a>
+            <a href="#order">ORDER ONLINE</a>
+          </nav>
+          <a className="hero__nav-cta" href="#order">
+            <span aria-hidden>🛍</span>
+            ORDER NOW
+          </a>
+        </motion.header>
+
+        {/* Left content column — scroll-driven fade + stagger entrance */}
+        <motion.div
+          className="hero__copy"
+          style={{ y: logoY, opacity: logoOpacity }}
+        >
+          <motion.p
+            className="hero__tagline"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <span className="hero__tagline-mark" aria-hidden>~</span>
+            Made to make you smile
+            <span className="hero__tagline-mark" aria-hidden>~</span>
+          </motion.p>
+
+          <motion.h1
+            className="hero__logo"
+            initial={{ opacity: 0, y: 50, scale: 0.85 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{
-              opacity: { duration: 0.7, delay: 1.15, ease: [0.22, 1, 0.36, 1] },
-              y: { type: 'spring', stiffness: 90, damping: 14, delay: 1.15 },
-              scale: {
-                type: 'spring',
-                stiffness: 120,
-                damping: 11,
-                delay: 1.15,
-              },
+              opacity: { duration: 0.7, delay: 1.05, ease: [0.22, 1, 0.36, 1] },
+              y: { type: 'spring', stiffness: 90, damping: 14, delay: 1.05 },
+              scale: { type: 'spring', stiffness: 110, damping: 11, delay: 1.05 },
             }}
           >
-            <span className="hero__logo-text">DONUT</span>
-          </motion.div>
+            <span className="hero__logo-text">Crèmeau</span>
+          </motion.h1>
+
+          <motion.p
+            className="hero__sub"
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.35, ease: [0.22, 1, 0.36, 1] }}
+          >
+            DOUGHNUTS. DREAMS. DELICIOUS.
+          </motion.p>
+
+          <motion.p
+            className="hero__body"
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.5, ease: [0.22, 1, 0.36, 1] }}
+          >
+            Handcrafted doughnuts made with premium ingredients and a whole lot of love.
+          </motion.p>
+
+          <motion.a
+            className="hero__cta"
+            href="#menu"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 1.65, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            EXPLORE OUR MENU <span aria-hidden>→</span>
+          </motion.a>
+
+          <motion.ul
+            className="hero__features"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 1.85, ease: [0.22, 1, 0.36, 1] }}
+            aria-label="Promise"
+          >
+            <li>
+              <span className="hero__feature-icon" aria-hidden>🌿</span>
+              PREMIUM<br />INGREDIENTS
+            </li>
+            <li>
+              <span className="hero__feature-icon" aria-hidden>♥</span>
+              MADE<br />WITH LOVE
+            </li>
+            <li>
+              <span className="hero__feature-icon" aria-hidden>◯</span>
+              FRESH DAILY<br />HANDCRAFTED
+            </li>
+          </motion.ul>
+        </motion.div>
+
+        {/* Right-side circular badge */}
+        <motion.div
+          className="hero__badge"
+          style={{ x: '-50%', y: '-50%' }}
+          initial={{ opacity: 0, scale: 0.6 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            type: 'spring',
+            stiffness: 110,
+            damping: 12,
+            delay: 1.95,
+          }}
+        >
+          <span className="hero__badge-icon" aria-hidden>♡</span>
+          <span className="hero__badge-line">ALWAYS</span>
+          <span className="hero__badge-emph">FRESH</span>
+          <span className="hero__badge-line">ALWAYS</span>
+          <span className="hero__badge-emph">DELICIOUS</span>
+        </motion.div>
+
+        {/* Scroll cue */}
+        <motion.div
+          className="hero__scroll"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 2.1 }}
+          aria-hidden
+        >
+          <motion.span
+            className="hero__scroll-chev"
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            ⌄
+          </motion.span>
+          SCROLL TO DISCOVER
         </motion.div>
 
         {/* 3. Ground shadow — visible from the start; the gradient+blur

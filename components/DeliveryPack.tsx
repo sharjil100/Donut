@@ -31,7 +31,7 @@ export default function DeliveryPack() {
   const landedProduct = PRODUCTS[activeIndex];
 
   return (
-    <section className="dp" aria-label="Donut delivery pack">
+    <section className="dp" aria-label="Crèmeau delivery pack">
       <div className="dp__stage">
         {/* Background */}
         <div className="dp__bg">
@@ -54,7 +54,7 @@ export default function DeliveryPack() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span>Donut</span>
+            <span>Crèmeau</span>
             <span>DELIVERY</span>
           </motion.h2>
 

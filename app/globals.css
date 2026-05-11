@@ -50,61 +50,275 @@ img {
   object-position: center center;
 }
 
-/* ── 2. Logo — sits behind donut (z-1) ───────────────── */
-.hero__logo {
+/* ── 2. Top navigation bar ───────────────────────────── */
+.hero__nav {
   position: absolute;
-  left: 37%;
-  /*
-    Place the logo so its vertical center is near the lower
-    half of the donut. The donut center is ~50vh; the donut
-    bottom edge is ~50vh + half-donut-height. We push the
-    logo up so its upper portion slides behind the donut.
-  */
-  top: 12%;
-  transform: translateX(-50%);
-  width: clamp(360px, 70vw, 1000px);
-  /* Above the reflection (2) and shadow (3) so the letters stay
-     solid where they overlap the bright reflection band on mobile,
-     but still below the donut (4) so the donut's lower curve
-     overlaps the top of the logo. */
-  z-index: 3;
-  pointer-events: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26px clamp(24px, 4vw, 56px);
+  z-index: 9;
+  pointer-events: auto;
 }
-.hero__logo-img {
-  width: 100%;
-  height: auto;
-  display: block;
+.hero__nav-brand {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 400;
+  font-size: clamp(20px, 1.6vw, 28px);
+  letter-spacing: 0.22em;
+  color: #ffffff;
+}
+.hero__nav-links {
+  display: flex;
+  gap: clamp(20px, 3vw, 44px);
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: clamp(11px, 0.95vw, 13.5px);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.92);
+}
+.hero__nav-links a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.hero__nav-links a:hover {
+  color: #ffe0ee;
+}
+.hero__nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  border-radius: 999px;
+  font-family: system-ui, sans-serif;
+  font-size: clamp(11px, 0.9vw, 13px);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: #ffffff;
+  text-decoration: none;
+  background: transparent;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.hero__nav-cta:hover {
+  background: #ffffff;
+  color: #da1884;
+}
+
+/* ── 3. Left content column ─────────────────────────── */
+.hero__copy {
+  position: absolute;
+  left: clamp(24px, 5vw, 80px);
+  /* Anchored from the top so the tagline sits in the upper third like
+     the reference, instead of vertical-centering the whole tall column
+     and pushing the CTA to the bottom edge. */
+  top: clamp(110px, 18vh, 200px);
+  width: clamp(420px, 50vw, 760px);
+  max-width: 60vw;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  pointer-events: auto;
+}
+.hero__tagline {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-script), "Caveat", "Pacifico", cursive;
+  font-weight: 500;
+  font-size: clamp(24px, 2.2vw, 34px);
+  color: #ec4899;
+  letter-spacing: 0.01em;
+  margin-bottom: 8px;
+}
+.hero__tagline-mark {
+  display: inline-block;
+  width: 28px;
+  height: 1.5px;
+  background: #ec4899;
+  border-radius: 2px;
+  transform: rotate(-6deg);
+}
+
+.hero__logo {
+  margin: 0;
+  pointer-events: none;
 }
 .hero__logo-text {
   display: block;
-  width: 100%;
-  text-align: center;
-  /* Baloo 2 — very rounded, friendly display face with soft terminals
-     that read like a donut wordmark. Wider tracking lets each letter
-     breathe so the wordmark feels confident, not cramped. */
-  font-family: var(--font-display), ui-rounded, "SF Pro Rounded",
-    "Nunito", "Quicksand", system-ui, sans-serif;
-  font-weight: 800;
-  font-style: italic;
-  font-size: clamp(80px, 18vw, 280px);
-  line-height: 1;
-  letter-spacing: 0.06em;
+  /* Bebas Neue — ultra-condensed, high x-height, geometric. Bebas is
+     a single-case all-caps face, so source casing doesn't matter. */
+  font-family: var(--font-display), "Bebas Neue", "Oswald", "Anton",
+    "Helvetica Neue Condensed", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: clamp(96px, 14vw, 220px);
+  line-height: 0.94;
+  letter-spacing: 0.02em;
   color: #ffffff;
-  text-transform: uppercase;
   text-shadow:
-    0 6px 0 rgba(180, 60, 110, 0.22),
-    0 22px 40px rgba(120, 0, 50, 0.22);
+    0 6px 0 rgba(180, 60, 110, 0.18),
+    0 18px 36px rgba(120, 0, 50, 0.22);
   user-select: none;
 }
 
-/* ── 3. Ground shadow — soft ellipse under donut ──────── */
-.hero__shadow {
+.hero__sub {
+  margin: 18px 0 14px;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: clamp(16px, 1.4vw, 22px);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #ec4899;
+  text-transform: uppercase;
+}
+.hero__body {
+  margin: 0 0 28px;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: clamp(14px, 1.1vw, 17px);
+  font-weight: 500;
+  line-height: 1.5;
+  color: #3d2230;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.35);
+  max-width: 36ch;
+}
+
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  align-self: flex-start;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f43e8c 0%, #d11770 100%);
+  color: #ffffff;
+  font-family: system-ui, sans-serif;
+  font-size: clamp(12px, 1vw, 14.5px);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-decoration: none;
+  box-shadow:
+    0 12px 28px rgba(193, 16, 97, 0.35),
+    0 4px 10px rgba(193, 16, 97, 0.18);
+  cursor: pointer;
+  transition: box-shadow 0.25s ease;
+}
+.hero__cta:hover {
+  box-shadow:
+    0 18px 36px rgba(193, 16, 97, 0.42),
+    0 8px 16px rgba(193, 16, 97, 0.22);
+}
+
+.hero__features {
+  list-style: none;
+  margin: 36px 0 0;
+  padding: 0;
+  display: flex;
+  gap: clamp(20px, 3vw, 40px);
+}
+.hero__features li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: system-ui, sans-serif;
+  font-size: clamp(10px, 0.78vw, 12px);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #b53472;
+  text-align: center;
+  line-height: 1.3;
+}
+.hero__feature-icon {
+  font-size: clamp(22px, 1.8vw, 28px);
+  color: #ec4899;
+}
+
+/* ── 4. Right-side circular badge — tucks against the donut's
+       lower-right shoulder rather than floating at the viewport edge. */
+.hero__badge {
+  position: absolute;
+  left: 88%;
+  top: 70%;
+  /* Centering applied via framer style x/y='-50%' so it doesn't clash
+     with the scale/opacity animate transform. */
+  width: clamp(110px, 10vw, 150px);
+  height: clamp(110px, 10vw, 150px);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  z-index: 6;
+  box-shadow:
+    0 14px 30px rgba(193, 16, 97, 0.18),
+    0 2px 6px rgba(193, 16, 97, 0.12);
+  text-align: center;
+  pointer-events: none;
+}
+.hero__badge-icon {
+  font-size: clamp(14px, 1.3vw, 18px);
+  color: #ec4899;
+  margin-bottom: 4px;
+}
+.hero__badge-line {
+  font-family: system-ui, sans-serif;
+  font-size: clamp(9px, 0.7vw, 11px);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #ec4899;
+  text-transform: uppercase;
+}
+.hero__badge-emph {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(13px, 1.1vw, 17px);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: #d11770;
+  line-height: 1;
+  margin: 2px 0;
+}
+
+/* ── 5. Scroll cue ──────────────────────────────────── */
+.hero__scroll {
   position: absolute;
   left: 50%;
-  top: calc(50% + 220px);
+  bottom: 28px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-family: system-ui, sans-serif;
+  font-size: clamp(10px, 0.8vw, 12px);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(120, 0, 50, 0.22);
+  z-index: 6;
+  pointer-events: none;
+}
+.hero__scroll-chev {
+  font-size: clamp(16px, 1.4vw, 22px);
+  line-height: 1;
+}
+
+/* ── 6. Ground shadow — soft ellipse under donut ──────── */
+.hero__shadow {
+  position: absolute;
+  left: 70%;
+  top: calc(50% + 200px);
   transform: translate(-50%, 0);
-  width: clamp(480px, 44vw, 640px);
-  height: 120px;
+  width: clamp(380px, 36vw, 540px);
+  height: 110px;
   border-radius: 50%;
   background: radial-gradient(
     ellipse at center,
@@ -118,14 +332,14 @@ img {
   pointer-events: none;
 }
 
-/* ── 4. Manual reflection ─────────────────────────────── */
+/* ── 7. Manual reflection ─────────────────────────────── */
 .hero__reflection-wrap {
   position: absolute;
-  left: 50%;
-  top: calc(50% + 200px);
+  left: 70%;
+  top: calc(50% + 190px);
   transform: translateX(-50%) scaleY(0.65);
   transform-origin: top center;
-  width: clamp(520px, 46vw, 660px);
+  width: clamp(420px, 38vw, 560px);
   opacity: 0.28;
   filter: blur(3px);
   z-index: 1;
@@ -150,14 +364,14 @@ img {
   transform: scaleY(-1);
 }
 
-/* ── 5. Donut ─────────────────────────────────────────── */
+/* ── 8. Donut ─────────────────────────────────────────── */
 .hero__donut {
   position: absolute;
-  left: 50%;
+  left: 70%;
   top: 50%;
   /* framer-motion sets translate(-50%, -50%) via x/y */
-  width: clamp(560px, 52vw, 720px);
-  z-index: 4;
+  width: clamp(460px, 44vw, 620px);
+  z-index: 5;
   will-change: transform;
   pointer-events: none;
 }
@@ -168,59 +382,98 @@ img {
 }
 
 /* ===== Mobile ===== */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .hero {
     min-height: 100svh;
   }
+  /* Hide nav links + cta + side badge + features + scroll cue
+     on tablet/phone to focus on the hero core. */
+  .hero__nav-links,
+  .hero__nav-cta,
+  .hero__features,
+  .hero__badge,
+  .hero__scroll {
+    display: none;
+  }
+  .hero__nav {
+    padding: 18px 20px;
+    justify-content: center;
+  }
+  .hero__copy {
+    position: absolute;
+    left: 4vw;
+    right: 4vw;
+    top: clamp(80px, 14vh, 130px);
+    width: auto;
+    max-width: none;
+    text-align: center;
+    align-items: center;
+  }
+  .hero__tagline {
+    justify-content: center;
+    font-size: clamp(20px, 5vw, 28px);
+  }
+  .hero__logo-text {
+    font-size: clamp(72px, 19vw, 140px);
+    letter-spacing: 0.03em;
+  }
+  .hero__sub {
+    font-size: clamp(13px, 3.6vw, 18px);
+  }
+  .hero__body {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(13px, 3.4vw, 15px);
+  }
+  .hero__cta {
+    align-self: center;
+    padding: 14px 26px;
+    font-size: 12px;
+  }
 
   .hero__donut {
-    width: 86vw;
-    top: 44%;
-  }
-
-  .hero__logo {
     left: 50%;
-    width: 96vw;
-    /* Position so the logo's top edge tucks just under the donut's
-       lower curve — donut center is at 44vh, half-height ≈ 43vw. */
-    top: calc(44vh + 34vw);
+    top: 70%;
+    width: 78vw;
   }
-
   .hero__shadow {
-    width: 76vw;
-    height: 90px;
-    top: calc(44% + 32vw);
+    left: 50%;
+    top: calc(70% + 28vw);
+    width: 70vw;
+    height: 80px;
   }
-
   .hero__reflection-wrap {
-    width: 82vw;
-    top: calc(44% + 30vw);
-    opacity: 0.22;
+    left: 50%;
+    top: calc(70% + 26vw);
+    width: 76vw;
+    opacity: 0.2;
   }
 }
 
 @media (max-width: 480px) {
-  .hero {
-    min-height: 100svh;
+  .hero__copy {
+    top: 14%;
+  }
+  .hero__tagline-mark {
+    width: 18px;
+  }
+  .hero__logo-text {
+    font-size: clamp(64px, 20vw, 108px);
+    letter-spacing: 0.04em;
   }
   .hero__donut {
+    top: 72%;
     width: 92vw;
-    top: 42%;
-  }
-  .hero__logo {
-    width: 100vw;
-    top: calc(42vh + 34vw);
   }
   .hero__shadow {
-    width: 78vw;
-    height: 70px;
-    top: calc(42% + 36vw);
+    top: calc(72% + 34vw);
+    width: 80vw;
     filter: blur(18px);
   }
   .hero__reflection-wrap {
-    width: 86vw;
-    top: calc(42% + 34vw);
-    opacity: 0.18;
+    top: calc(72% + 32vw);
+    width: 88vw;
+    opacity: 0.16;
   }
 }
 
@@ -553,55 +806,16 @@ img {
   }
 }
 
-/* 5. Mini logo (coded) */
+/* 5. Mini logo — hidden because the persistent hero__nav already shows
+   the CRÈMEAU wordmark above this scene. Kept the rule for future use. */
 .orange-scene__logo {
-  position: absolute;
-  left: 50%;
-  top: 5.5vh;
-  transform: translateX(-50%);
-  z-index: 5;
-  font-family: var(--font-display), ui-rounded, "SF Pro Rounded", "Nunito",
-    "Quicksand", "Segoe UI", system-ui, sans-serif;
-  font-size: clamp(30px, 2.6vw, 44px);
-  font-weight: 700;
-  font-style: italic;
-  letter-spacing: 0.02em;
-  color: #ffffff;
-  text-shadow:
-    2px 3px 0 #da1884,
-    0 6px 14px rgba(120, 0, 50, 0.28);
-  pointer-events: none;
-  user-select: none;
-  will-change: opacity, transform;
+  display: none;
 }
 
-/* 6. Order pill button (coded) */
+/* 6. Order pill — hidden because the persistent hero__nav already
+   provides the ORDER NOW CTA at the top of the page. */
 .orange-scene__order {
-  position: absolute;
-  right: 4vw;
-  top: 5vh;
-  z-index: 5;
-  height: 46px;
-  padding: 0 22px;
-  border: none;
-  border-radius: 999px;
-  background: #ffffff;
-  color: #ef9b2d;
-  font-family: inherit;
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  cursor: pointer;
-  pointer-events: auto;
-  box-shadow: 0 4px 14px rgba(180, 90, 0, 0.15);
-  transition: box-shadow 0.25s ease;
-}
-.orange-scene__order:hover {
-  box-shadow: 0 10px 24px rgba(180, 90, 0, 0.24);
-}
-.orange-scene__order:focus-visible {
-  outline: 2px solid #ef9b2d;
-  outline-offset: 3px;
+  display: none;
 }
 
 @media (max-width: 768px) {
@@ -830,12 +1044,17 @@ img {
   left: -14vw;
   transform: translateY(-50%);
   z-index: 3;
+  /* Clip sliding products to the slot's own bounds so the
+     AnimatePresence swap can't briefly render the side product
+     over the center product. */
+  overflow: hidden;
 }
 .cs__slot--right {
   top: 47%;
   right: -14vw;
   transform: translateY(-50%);
   z-index: 3;
+  overflow: hidden;
 }
 .cs__slot--center {
   top: 56%;

@@ -1,19 +1,26 @@
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
-import { Baloo_2 } from 'next/font/google';
+import { Bebas_Neue, Caveat } from 'next/font/google';
 import './globals.css';
 
-const displayFont = Baloo_2({
-  subsets: ['latin'],
-  weight: ['600', '700', '800'],
+const displayFont = Bebas_Neue({
+  subsets: ['latin', 'latin-ext'],
+  weight: '400',
   variable: '--font-display',
   display: 'swap',
 });
 
+const scriptFont = Caveat({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['500', '700'],
+  variable: '--font-script',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
-  title: 'Donut Portal — Brewed for the Bold',
+  title: 'Crèmeau — Brewed for the Bold',
   description:
-    'A cinematic donut portal experience — scroll into a dreamy pink world and emerge in a sun-soaked Dunkin-inspired scene.',
+    'A cinematic donut portal experience — scroll into a dreamy pink world and emerge in a sun-soaked Crèmeau scene.',
 };
 
 export const viewport: Viewport = {
@@ -24,7 +31,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={displayFont.variable}>
+    <html lang="en" className={`${displayFont.variable} ${scriptFont.variable}`}>
       <body>{children}</body>
     </html>
   );

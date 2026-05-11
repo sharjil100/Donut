@@ -52,7 +52,7 @@ export default function OrangeWorldScene({ progress }: OrangeWorldSceneProps) {
     if (!revealed && v > 0.65) setRevealed(true);
   });
   return (
-    <div className="orange-scene" aria-label="Donut product world">
+    <div className="orange-scene" aria-label="Crèmeau product world">
       {/* 1. Base orange background */}
       <div className="orange-scene__bg">
         <Image
@@ -202,7 +202,7 @@ export default function OrangeWorldScene({ progress }: OrangeWorldSceneProps) {
             <span className="orange-scene__product-shadow" aria-hidden />
             <Image
               src={`${ORANGE_BASE}/product-group.png`}
-              alt="Donut product cluster"
+              alt="Crèmeau product cluster"
               width={2200}
               height={1600}
               sizes="(max-width: 768px) 100vw, 60vw"
@@ -214,8 +214,8 @@ export default function OrangeWorldScene({ progress }: OrangeWorldSceneProps) {
       </div>
 
       {/* 6. Mini logo */}
-      <div className="orange-scene__logo" aria-label="Donut">
-        Donut
+      <div className="orange-scene__logo" aria-label="Crèmeau">
+        Crèmeau
       </div>
 
       {/* 7. Order pill button */}
